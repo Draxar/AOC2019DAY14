@@ -117,4 +117,29 @@ for line in inp:
     itr -= 2
 
 ans = reccount("FUEL",1)
-print(ans)
+
+# part 2 somehow optimized Brute forcs blah :/
+# we know that we have some leftovers so it will be more than :
+# (1000000000000 / ans) but we can only check how much more
+pf = int(1000000000000 / ans)
+a1 = 0
+mark = 10000000
+while mark > 1:
+  while a1 < 1000000000000:
+    a1 = reccount("FUEL",pf)
+    pf += mark
+    #if pf % 1 == 0:
+      #print(pf)
+  print("ans <")
+  print(pf)
+  mark /= 10
+  while a1 > 1000000000000:
+    a1 = reccount("FUEL",pf)
+    pf -= mark
+  print("ans >")
+  print(pf)
+  mark /= 10
+a1 = pf
+
+print("ANSWER:")
+print(int(a1))
